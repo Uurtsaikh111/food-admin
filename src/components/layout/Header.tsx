@@ -76,7 +76,7 @@ const Header = () => {
               <Box
                 sx={{
                   display: "flex",
-                  gap: "24px",
+                  gap: "30px",
                   fontSize: "16px",
                   py: "8px",
                   color: "black",
@@ -84,13 +84,11 @@ const Header = () => {
               >
                 <Link  href={"/"}
                   style={{ textDecoration: "none" }}
-                ><Typography color={"#000000"}>НҮҮР</Typography></Link>
-                <Link  href={"/menu"}
+                ><Typography color={"#000000"} fontWeight={600}>Menu</Typography></Link>
+                <Link  href={"/dashboard"}
                   style={{ textDecoration: "none" }}
-                ><Typography color={"#000000"}>ХООЛНЫ ЦЭС</Typography></Link>
-                <Link  href={"/delivery-zone"}
-                  style={{ textDecoration: "none" }}
-                ><Typography color={"#000000"}>ХҮРГЭЛТИЙН БҮС</Typography></Link>
+                ><Typography color={"#000000"} fontWeight={600}>Dashboard</Typography></Link>
+               
               </Box>
             </Box>
             <Box

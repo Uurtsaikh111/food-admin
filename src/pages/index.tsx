@@ -1,4 +1,5 @@
-import { Stack } from "@mui/material";
+import { CategoryFoods, FoodMenu } from "@/components/Home";
+import { Container, Stack } from "@mui/material";
 import Head from "next/head";
 
 export default function Home() {
@@ -11,8 +12,13 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <>
-       <Stack>
-         
+       <Stack bgcolor={"#F7F7F8"}>
+        <Container maxWidth={"lg"}>
+           <Stack direction={"row"} gap={4}>
+             <FoodMenu/>
+             <CategoryFoods/>
+           </Stack>
+         </Container>
        </Stack>
       </>
     </>
