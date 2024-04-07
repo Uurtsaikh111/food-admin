@@ -68,8 +68,9 @@ return(
        })}
         <Stack onClick={handleOpen} px={2} py={0.3} border={"1px solid #D6D8DB"} borderRadius={1}>
              <Button sx={{color:"grey"}}>+ Create new category</Button>
-             <CategoryModal handleClose={handleClose} open={open}/>
-            </Stack>
+             
+        </Stack>
+        <CategoryModal handleClose={handleClose} open={open}/>
         </Stack>
     </Stack>
     )

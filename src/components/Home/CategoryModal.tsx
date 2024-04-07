@@ -73,7 +73,7 @@ export const CategoryModal=({handleClose, open}: { handleClose: Dispatch<SetStat
                   backgroundColor: "#18BA51",
                   color: "white",
                   fontSize: "16px",
-                  border: "1px solid #18BA51",
+                
                 }}
               
                 >Continue</Button>
