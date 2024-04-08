@@ -57,17 +57,17 @@ export const CategoryFoods= ()=>{
       console.log(foodData)
       getAllData();
   }, []);
-  const filterFoods = foodData?.filter((item) => item.categoryId=="661118aff8cf2d64a533cfa3");
+  const filterFoods = foodData?.filter((item) => item.categoryId==menu);
   console.log("ssss",filterFoods)
     return(
         <Stack width={"75%"} py={3}>
            <Box  py={2} display={"flex"} justifyContent={"space-between"}>
-           {/* {data?.map((cat,id)=>{
-            return(
-              <Typography key={id} fontSize={"22px"} fontWeight={700}>{cat.name}</Typography>
-            )
-          })} */}
-              <Typography fontSize={"22px"} fontWeight={700}>Breakfast</Typography>
+           <Stack direction={"row"} gap={1} >
+        {data?.map((cat,id)=>(
+          <Button sx={{ width:"100px",  px:"16px", py:"8px",borderRadius:"8px", color:"black", border:"1px solid grey"}} onClick={()=>setMenu(cat._id)} key={id}>{cat.name}</Button>
+        ))}
+      </Stack>
+             
               <Stack><Button
               onClick={handleOpen}
                sx={{color:"white", backgroundColor:"#18BA51"}}
