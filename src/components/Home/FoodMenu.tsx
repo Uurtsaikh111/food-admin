@@ -28,11 +28,11 @@ export const FoodMenu = () => {
   }, []);
   const deleteSubmit = async (e: any) => {
     e.preventDefault();
-    const data = {
+    const createData = {
       id: e.target.id.value,
     };
     const res = await fetch("http://localhost:4000/api/category", {
-      body: JSON.stringify(data),
+      body: JSON.stringify(createData),
       method: "Delete",
       mode: "cors",
       headers: {
@@ -40,10 +40,11 @@ export const FoodMenu = () => {
         "Content-Type": "application/json",
       },
     });
-    const datas = await res.json();
-    console.log(datas);
-    // const newData = data.filter((a:dataType)=>a._id !=e.target.id.value);
-    // setData(newData);
+    const delData = await res.json();
+    console.log(delData);
+   const newData = data?.filter((a:dataType)=>a._id !=e.target.id.value);
+   console.log("newData",newData)
+    setData(newData);
   };
 
   return (
