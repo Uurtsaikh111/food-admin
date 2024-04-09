@@ -1,6 +1,7 @@
 import { Button, Stack, Typography } from "@mui/material";
 import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { CategoryModal } from "./CategoryModal";
+import { MenuButtons } from "./MenuButtons";
 type dataType = {
   _id: string;
   name: string;
@@ -31,26 +32,7 @@ export const FoodMenu = ({
 
     handleSubmit();
   }, []);
-  const deleteSubmit = async (e: any) => {
-    e.preventDefault();
-    const createData = {
-      id: e.target.id.value,
-    };
-    const res = await fetch("http://localhost:4000/api/category", {
-      body: JSON.stringify(createData),
-      method: "Delete",
-      mode: "cors",
-      headers: {
-        Accept: "application.json",
-        "Content-Type": "application/json",
-      },
-    });
-    const delData = await res.json();
-    console.log(delData);
-    const newData = data?.filter((a: dataType) => a._id != e.target.id.value);
-    console.log("newData", newData);
-    setData(newData as dataType[]);
-  };
+  
 
   return (
     <Stack width={"282px"} py={"26px"} px={3} bgcolor={"white"} gap={"40px"}>
@@ -62,31 +44,23 @@ export const FoodMenu = ({
           return (
             <Stack
               key={id}
-              px={2}
+              pl={2}
               border={"1px solid #D6D8DB"}
               justifyContent={"space-between"}
               direction={"row"}
               borderRadius={1}
+              sx={{cursor:"pointer"}}
             >
-              <Button
-                // display={"flex"}
-                // fontSize={"18px"}
-                // fontWeight={550}
-                // alignItems={"center"}
-                onClick={() => setMenu(a._id)}
+              <Typography
+                display={"flex"}
+                fontSize={"18px"}
+                fontWeight={500}
+                alignItems={"center"}
+                onClick={() => setMenu(a.name)}
               >
                 {a.name}
-              </Button>
-              <form onSubmit={deleteSubmit} className="flex gap-5">
-                <Button
-                  name="id"
-                  value={a._id}
-                  type="submit"
-                  sx={{ color: "#18BA51" }}
-                >
-                  del
-                </Button>
-              </form>
+              </Typography>
+              <MenuButtons a={a} data={data} setData={setData}/>
             </Stack>
           );
         })}

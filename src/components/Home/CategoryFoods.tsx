@@ -64,26 +64,25 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
 
   // }, []);
   console.log(foodData);
-  const filterFoods = foodData?.filter((item) => item.categoryId._id == menu);
-  const filterCategory = foodData?.filter((item) => item.categoryId);
+  const filterFoods = foodData?.filter((item) => item.categoryId.name == menu);
+  //const filterCategory = foodData?.filter((item) => item.categoryId);
   console.log("ssss", filterFoods);
-  console.log("category", filterCategory);
+  // console.log("category", filterCategory);
   return (
     <Stack width={"75%"} py={3}>
       <Box py={2} display={"flex"} justifyContent={"space-between"}>
         <Stack direction={"row"} gap={1}>
-          <Button
+          <Typography
             sx={{
-              width: "100px",
               px: "16px",
               py: "8px",
-              borderRadius: "8px",
               color: "black",
-              border: "1px solid grey",
+              fontSize:"22px",
+              fontWeight:"700"
             }}
           >
             {menu}
-          </Button>
+          </Typography>
         </Stack>
 
         <Stack>
