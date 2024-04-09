@@ -2,7 +2,7 @@ import * as React from 'react';
 import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MoreVertIcon from '@mui/icons-material/MoreVert';
-import { Button, Stack } from '@mui/material';
+import { Button, Stack, TextField } from '@mui/material';
 
 
 type dataType = {
@@ -24,11 +24,11 @@ export const MenuButtons=({data,setData,a}:{ data:dataType[] | null, setData:Rea
 
   const deleteSubmit = async (e: any) => {
     e.preventDefault();
-    const createData = {
+    const deleteData = {
       id: e.target.id.value,
     };
     const res = await fetch("http://localhost:4000/api/category", {
-      body: JSON.stringify(createData),
+      body: JSON.stringify(deleteData),
       method: "Delete",
       mode: "cors",
       headers: {
@@ -37,11 +37,35 @@ export const MenuButtons=({data,setData,a}:{ data:dataType[] | null, setData:Rea
       },
     });
     const delData = await res.json();
-    console.log(delData);
+    console.log(delData)
     const newData = data?.filter((a: dataType) => a._id != e.target.id.value);
-    console.log("newData", newData);
     setData(newData as dataType[]);
   };
+  const updateSubmit = async (e: any) => {
+    e.preventDefault();
+    const updateData = {
+      id: e.target.id.value,
+      updateInfo: e.target.updateInfo.value
+    };
+    const res = await fetch("http://localhost:4000/api/category", {
+      body: JSON.stringify(updateData),
+      method: "Put",
+      mode: "cors",
+      headers: {
+        Accept: "application.json",
+        "Content-Type": "application/json",
+      },
+    });
+    const updatedData = await res.json();
+    console.log("updatedData",updatedData);
+    if (updatedData.matchedCount) {
+    handleClose()
+    } else {
+      alert("wrong category name");
+    }
+    handleClose()
+  };
+  
 
   return (
     <div>
@@ -64,15 +88,22 @@ export const MenuButtons=({data,setData,a}:{ data:dataType[] | null, setData:Rea
         open={open}
         onClose={handleClose}
       >
-           <Stack px={2}> <form  className="flex gap-5">
+           <Stack px={2}> <form onSubmit={updateSubmit} className="flex gap-5">
+           <Stack><TextField
+                  // id="outline"
+                  name='updateInfo'
+                  placeholder="Name"
+                  variant="outlined"
+                  sx={{ backgroundColor: "#ECEDF0"}}
+                />
                 <Button
                   name="id"
                   value={a._id}
                   type="submit"
-                  sx={{ color: "black" }}
+                  sx={{ color: "black", display:"flex", justifyContent:"flex-start"}}
                 >
                   Edit name
-                </Button>
+                </Button></Stack>
             </form>
             <form onSubmit={deleteSubmit} className="flex gap-5">
                 <Button

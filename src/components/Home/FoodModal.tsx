@@ -34,10 +34,9 @@ export const FoodModal=({data,handleClose,open}:{data:dataType[] | null, handleC
             price:price,
             discount:discount,
             ingredients:ingredients,
+           }
            
-      }
-           
-           const res = await fetch("http://localhost:4000/api/food", {
+          const res = await fetch("http://localhost:4000/api/food", {
           body: JSON.stringify(data),
           method: "POST",
           headers: {
@@ -118,8 +117,7 @@ return(
             </Stack>
             <Stack gap={1}>
                <Typography>Хоолны зураг</Typography>
-               {/* <TextField  onChange={e =>setImage(e.target.value)}
-                  required id="outline" type="category" placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/> */}
+               
             <UploadFile setImage={setImage}/>
             </Stack>
          </Stack>

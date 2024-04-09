@@ -63,11 +63,11 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
   //   useEffect(() => {
 
   // }, []);
-  console.log(foodData);
+  // console.log(foodData);
   const filterFoods = foodData?.filter((item) => item.categoryId.name == menu);
-  //const filterCategory = foodData?.filter((item) => item.categoryId);
-  console.log("ssss", filterFoods);
-  // console.log("category", filterCategory);
+  
+  // console.log("ssss", filterFoods);
+  
   return (
     <Stack width={"75%"} py={3}>
       <Box py={2} display={"flex"} justifyContent={"space-between"}>

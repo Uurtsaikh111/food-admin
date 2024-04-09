@@ -4,7 +4,7 @@ import Head from "next/head";
 import { useState } from "react";
 
 export default function Home() {
-  const [menu, setMenu] = useState("Desert")
+  const [menu, setMenu] = useState("")
   return (
     <>
       <Head>
