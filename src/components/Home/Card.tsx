@@ -7,7 +7,10 @@ Typography,
   interface dataFoodType {
     _id:string,
     name: string,
-    categoryId:string,
+    categoryId:{
+      name:string,
+      _id:string,
+    }
     image:string,
     price:number,
     discount:number,

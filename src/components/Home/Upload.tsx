@@ -35,6 +35,8 @@ const UploadFile = ({setImage}:{setImage:Dispatch<SetStateAction<string>>}) => {
         setImage(resJson.url)
       }
       setLoading(false);
+
+      
     }
   };
 

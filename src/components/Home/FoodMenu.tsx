@@ -1,11 +1,15 @@
 import { Button, Stack, Typography } from "@mui/material";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react";
 import { CategoryModal } from "./CategoryModal";
 type dataType = {
   _id: string;
   name: string;
 };
-export const FoodMenu = () => {
+export const FoodMenu = ({
+  setMenu,
+}: {
+  setMenu: Dispatch<SetStateAction<string>>;
+}) => {
   const [data, setData] = useState<dataType[] | null>(null);
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -22,6 +26,7 @@ export const FoodMenu = () => {
       });
       const datas = await res.json();
       setData(datas.categories);
+      
     };
 
     handleSubmit();
@@ -42,9 +47,9 @@ export const FoodMenu = () => {
     });
     const delData = await res.json();
     console.log(delData);
-   const newData = data?.filter((a:dataType)=>a._id !=e.target.id.value);
-   console.log("newData",newData)
-    setData(newData);
+    const newData = data?.filter((a: dataType) => a._id != e.target.id.value);
+    console.log("newData", newData);
+    setData(newData as dataType[]);
   };
 
   return (
@@ -63,14 +68,15 @@ export const FoodMenu = () => {
               direction={"row"}
               borderRadius={1}
             >
-              <Typography
-                display={"flex"}
-                fontSize={"18px"}
-                fontWeight={550}
-                alignItems={"center"}
+              <Button
+                // display={"flex"}
+                // fontSize={"18px"}
+                // fontWeight={550}
+                // alignItems={"center"}
+                onClick={() => setMenu(a._id)}
               >
                 {a.name}
-              </Typography>
+              </Button>
               <form onSubmit={deleteSubmit} className="flex gap-5">
                 <Button
                   name="id"
