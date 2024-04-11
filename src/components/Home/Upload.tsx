@@ -1,13 +1,14 @@
 import { CardMedia, CircularProgress, Container, Stack, Typography } from "@mui/material";
+
 import { Dispatch, SetStateAction, useState } from "react";
 
 const CLOUD_NAME = "da3Q5enno";
 const UPLOAD_PRESET = "oggsneat";
 
-const UploadFile = ({setImage}:{setImage:Dispatch<SetStateAction<string>>}) => {
+const UploadFile = ({setImage,setLoading,loading}:{setImage:Dispatch<SetStateAction<string>>,setLoading:Dispatch<SetStateAction<boolean>>,loading:boolean}) => {
   const [file, setFile] = useState<File | null>(null);
   const [imageUrl, setImageUrl] = useState<string | null>(null);
-  const [loading, setLoading] = useState<boolean>(false);
+ 
 
   const fileChangeHandler = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event?.target?.files) {
@@ -33,10 +34,9 @@ const UploadFile = ({setImage}:{setImage:Dispatch<SetStateAction<string>>}) => {
       if (resJson.url) {
         setImageUrl(resJson.url);
         setImage(resJson.url)
+      
       }
       setLoading(false);
-
-      
     }
   };
 
@@ -63,10 +63,10 @@ const UploadFile = ({setImage}:{setImage:Dispatch<SetStateAction<string>>}) => {
           </Stack>
         )}
         <Stack direction={"row"}>
-          <input type="file" onChange={fileChangeHandler} />
+          <input type="file" required onChange={fileChangeHandler} />
           <button onClick={uploadHandler}>Upload</button>
           {imageUrl && (
-            <CardMedia component={"img"} src={imageUrl} width={100} height={100} alt="uploaded" />
+            <CardMedia  component={"img"} src={imageUrl} width={100} height={100} alt="uploaded" />
           )}
         </Stack>
       </Stack>

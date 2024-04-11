@@ -2,6 +2,7 @@ import { Box, Button, FormControl, MenuItem, Modal, Select, SelectChangeEvent, S
 import React, { Dispatch, SetStateAction } from "react"
 import { CloseButton } from "../Images";
 import UploadFile from "./Upload";
+import { useRouter } from "next/router";
 interface dataType {
   _id:string,
   name: string,
@@ -16,7 +17,8 @@ const style = {
     px: 3,
   };
 export const FoodModal=({data,handleClose,open}:{data:dataType[] | null, handleClose: Dispatch<SetStateAction<boolean >>, open:boolean})=>{
-    const [category, setCategory] = React.useState('');
+const router= useRouter();   
+  const [category, setCategory] = React.useState('');
     const [name, setName] = React.useState('');
     const [ingredients, setIngredients] = React.useState<any>([]);
     const [image, setImage] = React.useState('');
@@ -25,8 +27,10 @@ export const FoodModal=({data,handleClose,open}:{data:dataType[] | null, handleC
     const handleChange = (event: SelectChangeEvent) => {
         setCategory(event.target.value as string);
       };
-      const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
-        event.preventDefault()
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+const handleSubmit = async (event:React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
           const data = {
             name:name,
             categoryId:category,
@@ -47,8 +51,8 @@ export const FoodModal=({data,handleClose,open}:{data:dataType[] | null, handleC
         const datas = await res.json();
         console.log(datas)
         if (datas.name) {
-           
             handleClose(false);
+            router.push("/dashboard")
           } else {
             alert("wrong something");
           }
@@ -103,27 +107,27 @@ return(
             <Stack gap={1}>
                <Typography>Хоолны орц</Typography>
                <TextField  onChange={e =>setIngredients(e.target.value)}
-                  required id="outline" type="category" placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/>
+                  required id="outline"  placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/>
             </Stack>
             <Stack gap={1}>
                <Typography>Хоолны үнэ</Typography>
                <TextField  onChange={e =>setPrice(e.target.value)}
-                  required id="outline" type="category" placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/>
+                  required id="outline"  placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/>
             </Stack>
             <Stack gap={1}>
                <Typography>Хямдралтай эсэх</Typography>
                <TextField  onChange={e =>setDiscount(e.target.value)}
-                  required id="outline" type="category" placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/>
+                  required id="outline"  placeholder="Placeholder" variant="outlined" sx={{backgroundColor:'#ECEDF0'}}/>
             </Stack>
             <Stack gap={1}>
                <Typography>Хоолны зураг</Typography>
                
-            <UploadFile setImage={setImage}/>
+            <UploadFile setImage={setImage} setLoading={setLoading} loading={loading}/>
             </Stack>
          </Stack>
          <Stack py={3} justifyContent={"flex-end"} direction={"row"} gap={2} borderTop={"1px #E0E0E0 solid"}>
                 <Button
-                //onClick={()=>{setName("")}}
+               
                 >Clear</Button>
                 <Button
                 type="submit"

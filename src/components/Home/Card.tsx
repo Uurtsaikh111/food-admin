@@ -4,30 +4,26 @@ Stack,
 Typography,
   } from "@mui/material";
   import React from "react";
-  interface dataFoodType {
-    _id:string,
-    name: string,
-    categoryId:{
-      name:string,
-      _id:string,
-    }
-    image:string,
-    price:number,
-    discount:number,
-    ingredients:string[]
-    }
+
+import { CardButtons } from "./CardButtons";
+import { foodType } from "./types/foodtype";
+
   
-  export const Card = ({ data }: { data: dataFoodType}) => {
+  export const Card = ({ data }: { data: foodType}) => {
  return (
       <Stack>
         <Stack >
-          <CardMedia
+          <Stack
+          position={"relative"}
+          ><CardMedia
             component={"img"}
             src={data.image}
             width={282}
             height={186}
             alt=""
           />
+           <Stack position={"absolute"}><CardButtons data={data}/></Stack>
+          </Stack>
           <Stack px={1.5}>
             <Typography fontSize={"18px"} fontWeight={"600"}>
               {data.name}
