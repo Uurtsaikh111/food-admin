@@ -1,6 +1,7 @@
 import {
 CardMedia,
 Stack,
+
 Typography,
   } from "@mui/material";
   import React from "react";
@@ -13,8 +14,10 @@ import { foodType } from "./types/foodtype";
  return (
       <Stack>
         <Stack >
+        
           <Stack
           position={"relative"}
+          
           ><CardMedia
             component={"img"}
             src={data.image}
@@ -22,8 +25,9 @@ import { foodType } from "./types/foodtype";
             height={186}
             alt=""
           />
-           <Stack position={"absolute"}><CardButtons data={data}/></Stack>
+           <Stack position={"absolute"} ><CardButtons data={data}/></Stack>
           </Stack>
+     
           <Stack px={1.5}>
             <Typography fontSize={"18px"} fontWeight={"600"}>
               {data.name}

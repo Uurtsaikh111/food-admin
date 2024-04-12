@@ -35,6 +35,7 @@ export const CardButtons=({data}:{ data:foodType | null
     });
     const delData = await res.json();
     console.log(delData)
+    handleClose()
     // const newData = data?.filter((a: dataType) => a._id != e.target.id.value);
     // setData(newData as dataType[]);
   };
@@ -42,7 +43,11 @@ export const CardButtons=({data}:{ data:foodType | null
     e.preventDefault();
     const updateData = {
       id: e.target.id.value,
-      updateName: e.target.updateName.value
+      updateName: e.target.updateName.value,
+      updatePrice: e.target.updatePrice.value,
+      updateImage: e.target.updateImage.value,
+      updateDiscount: e.target.updateDiscount.value,
+      updateIngredients: e.target.updateIngredients.value,
     };
     const res = await fetch("http://localhost:4000/api/food", {
       body: JSON.stringify(updateData),
@@ -60,7 +65,7 @@ export const CardButtons=({data}:{ data:foodType | null
     } else {
       alert("wrong food name");
     }
-    handleClose()
+   
   };
   
 
@@ -86,10 +91,35 @@ export const CardButtons=({data}:{ data:foodType | null
         onClose={handleClose}
       >
            <Stack px={2}> <form onSubmit={updateSubmit} className="flex gap-5">
-           <Stack><TextField
-                  // id="outline"
-                  name='updateName'
+           <Stack gap={1}>
+            <TextField
+               name='updateName'
                   placeholder="Name"
+                  variant="outlined"
+                  sx={{ backgroundColor: "#ECEDF0"}}
+                />
+               <TextField
+                   name='updatePrice'
+                  placeholder="Price"
+                  variant="outlined"
+                  sx={{ backgroundColor: "#ECEDF0"}}
+                />
+                <TextField
+                  
+                  name='updateImage'
+                  placeholder="Image"
+                  variant="outlined"
+                  sx={{ backgroundColor: "#ECEDF0"}}
+                />
+                <TextField
+                  name='updateDiscount'
+                  placeholder="Discount"
+                  variant="outlined"
+                  sx={{ backgroundColor: "#ECEDF0"}}
+                />
+                <TextField
+                  name='updateIngredients'
+                  placeholder="Ingredients"
                   variant="outlined"
                   sx={{ backgroundColor: "#ECEDF0"}}
                 />
@@ -99,13 +129,13 @@ export const CardButtons=({data}:{ data:foodType | null
                   type="submit"
                   sx={{ color: "black", display:"flex", justifyContent:"flex-start"}}
                 >
-                  Edit name
+                  Edit food
                 </Button></Stack>
             </form>
             <form onSubmit={deleteSubmit} className="flex gap-5">
                 <Button
                   name="id"
-                   value={data?._id}
+                  value={data?._id}
                   type="submit"
                   sx={{ color: "red" }}
                 >
