@@ -13,7 +13,7 @@ import {
 import React, { Dispatch, SetStateAction } from "react";
 import { CloseButton } from "../Images";
 import UploadFile from "./Upload";
-import { useRouter } from "next/router";
+
 interface dataType {
   _id: string;
   name: string;
@@ -36,7 +36,7 @@ export const FoodModal = ({
   handleClose: Dispatch<SetStateAction<boolean>>;
   open: boolean;
 }) => {
-  const router = useRouter();
+  // const router = useRouter();
   const [category, setCategory] = React.useState("");
   const [name, setName] = React.useState("");
   const [ingredients, setIngredients] = React.useState<any>([]);
@@ -69,10 +69,16 @@ export const FoodModal = ({
         },
       });
       const datas = await res.json();
-      console.log(datas);
+      console.log("datasaa",datas);
       if (datas.name) {
+        setCategory("")
+        setName("")
+        setIngredients("")
+        setPrice("")
+        setDiscount("")
+        setImage("")
         handleClose(false);
-        router.push("/dashboard");
+       
       } else {
         alert("wrong something");
       }
@@ -112,6 +118,7 @@ export const FoodModal = ({
                     onChange={(e) => setName(e.target.value)}
                     required
                     id="outline"
+                    value={name}
                     type="name"
                     placeholder="Placeholder"
                     variant="outlined"
@@ -161,6 +168,7 @@ export const FoodModal = ({
                     onChange={(e) => setPrice(e.target.value)}
                     required
                     id="outline"
+                    value={price}
                     placeholder="Placeholder"
                     variant="outlined"
                     sx={{ backgroundColor: "#ECEDF0" }}
@@ -172,6 +180,7 @@ export const FoodModal = ({
                     onChange={(e) => setDiscount(e.target.value)}
                     required
                     id="outline"
+                    value={discount}
                     placeholder="Placeholder"
                     variant="outlined"
                     sx={{ backgroundColor: "#ECEDF0" }}
@@ -181,6 +190,7 @@ export const FoodModal = ({
                   <Typography>Хоолны зураг</Typography>
 
                   <UploadFile
+    
                     setImage={setImage}
                     setLoading={setLoading}
                     loading={loading}
@@ -194,7 +204,7 @@ export const FoodModal = ({
                 gap={2}
                 borderTop={"1px #E0E0E0 solid"}
               >
-                <Button>Clear</Button>
+                <Button onClick={()=>setIngredients("")}>Clear</Button>
                 <Button
                   onClick={handleSubmit}
                   sx={{

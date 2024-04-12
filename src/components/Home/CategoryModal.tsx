@@ -87,6 +87,7 @@ export const CategoryModal = ({
                   onChange={(e) => setName(e.target.value)}
                   required
                   id="outline"
+                  value={name}
                   type="name"
                   placeholder="Placeholder"
                   variant="outlined"
@@ -101,7 +102,7 @@ export const CategoryModal = ({
                 gap={2}
                 borderTop={"1px #E0E0E0 solid"}
               >
-                <Button>Clear</Button>
+                <Button onClick={()=>setName("")}>Clear</Button>
                 <Button
                   type="submit"
                   sx={{
