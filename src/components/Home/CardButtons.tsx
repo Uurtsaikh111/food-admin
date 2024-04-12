@@ -33,8 +33,8 @@ export const CardButtons=({data}:{ data:foodType | null
         "Content-Type": "application/json",
       },
     });
-    // const delData = await res.json();
-    // console.log(delData)
+    const delData = await res.json();
+    console.log(delData)
     // const newData = data?.filter((a: dataType) => a._id != e.target.id.value);
     // setData(newData as dataType[]);
   };
@@ -42,9 +42,9 @@ export const CardButtons=({data}:{ data:foodType | null
     e.preventDefault();
     const updateData = {
       id: e.target.id.value,
-      updateInfo: e.target.updateInfo.value
+      updateName: e.target.updateName.value
     };
-    const res = await fetch("http://localhost:4000/api/category", {
+    const res = await fetch("http://localhost:4000/api/food", {
       body: JSON.stringify(updateData),
       method: "Put",
       mode: "cors",
@@ -55,10 +55,10 @@ export const CardButtons=({data}:{ data:foodType | null
     });
     const updatedData = await res.json();
     console.log("updatedData",updatedData);
-    if (updatedData.matchedCount) {
+    if (updatedData) {
     handleClose()
     } else {
-      alert("wrong category name");
+      alert("wrong food name");
     }
     handleClose()
   };
@@ -88,14 +88,14 @@ export const CardButtons=({data}:{ data:foodType | null
            <Stack px={2}> <form onSubmit={updateSubmit} className="flex gap-5">
            <Stack><TextField
                   // id="outline"
-                  name='updateInfo'
+                  name='updateName'
                   placeholder="Name"
                   variant="outlined"
                   sx={{ backgroundColor: "#ECEDF0"}}
                 />
                 <Button
                   name="id"
-                //   value={a._id}
+                 value={data?._id}
                   type="submit"
                   sx={{ color: "black", display:"flex", justifyContent:"flex-start"}}
                 >
@@ -109,7 +109,7 @@ export const CardButtons=({data}:{ data:foodType | null
                   type="submit"
                   sx={{ color: "red" }}
                 >
-                  Delete Category
+                  Delete Food
                 </Button>
             </form>
 

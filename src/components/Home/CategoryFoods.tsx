@@ -55,6 +55,7 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
       const foodDatas = await res.json();
 
       setFoodData(foodDatas.foods);
+      console.log("foodData:", foodDatas.foods);
     };
 
     getAllData();
@@ -65,9 +66,9 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
   // }, []);
   // console.log(foodData);
   const filterFoods = foodData?.filter((item) => item.categoryId.name == menu);
-  
+
   // console.log("ssss", filterFoods);
-  
+
   return (
     <Stack width={"75%"} py={3}>
       <Box py={2} display={"flex"} justifyContent={"space-between"}>
@@ -77,8 +78,8 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
               px: "16px",
               py: "8px",
               color: "black",
-              fontSize:"22px",
-              fontWeight:"700"
+              fontSize: "22px",
+              fontWeight: "700",
             }}
           >
             {menu}
@@ -92,11 +93,7 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
           >
             Add new food
           </Button>
-          <FoodModal
-            data={data}
-            handleClose={handleClose}
-            open={open}
-          />
+          <FoodModal data={data} handleClose={handleClose} open={open} />
         </Stack>
       </Box>
       <Stack>
