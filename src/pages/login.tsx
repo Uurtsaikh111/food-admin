@@ -29,7 +29,7 @@ const LoginComponent = () => {
     if (email && password) {
     }
     const data = {
-      email: email,
+      status: email,
       password: password,
     };
     console.log(data);
@@ -68,13 +68,13 @@ const LoginComponent = () => {
             <Stack gap={1}>
               <Stack gap={2}>
                 <Stack gap={0.5}>
-                  <Typography>Имэйл </Typography>
+                  <Typography>Админ нэр </Typography>
                   <TextField
                     onChange={(e) => setEmail(e.target.value)}
                     required
                     type="email"
                     id="outlined-basic"
-                    placeholder="И-мэйл хаягаа оруулна уу"
+                    placeholder="Админ нэрээ оруулна уу"
                     variant="outlined"
                     sx={{ backgroundColor: "#ECEDF0" }}
                   />

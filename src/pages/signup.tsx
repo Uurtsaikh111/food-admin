@@ -9,6 +9,7 @@ const Home = () => {
   const [password, setPassword] = useState("")
   const [address, setAddress] = useState("")
   const [name, setName] = useState("")
+  const [status, setStatus] = useState("")
  const [showPassword, setShowPassword] = React.useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -21,7 +22,8 @@ const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => 
         name:name,
         email:email,
         address:address,
-        password:password,   
+        password:password, 
+        status:status  
   }
        
        const res = await fetch("http://localhost:4000/api/register", {
@@ -72,11 +74,13 @@ return (
                 
               </Stack>
               <Stack gap={"4px"}>
-                <Typography>Нууц үг</Typography>
+                <Typography>Админ нэр</Typography>
                 
                 <FormControl sx={{ m: 0, width: '100%', backgroundColor:'#ECEDF0' }} variant="outlined">
           
           <OutlinedInput
+              onChange={e => setStatus(e.target.value)}
+              required
             id="outlined-adornment"
             type={showPassword ? 'text' : 'password'}
             endAdornment={
@@ -97,7 +101,7 @@ return (
                 
               </Stack>
               <Stack gap={"4px"}>
-                <Typography>Нууц үг давтах</Typography>
+                <Typography>Нууц үг</Typography>
                
                 <FormControl sx={{ m: 0, width: '100%', backgroundColor:'#ECEDF0' }} variant="outlined">
           
@@ -129,9 +133,7 @@ return (
                <Checkbox {...label} color="default"/>
                  <Typography mt={1}>Үйлчилгээний нөхцөл зөвшөөрөх</Typography>
                </Stack>
-             
-               <Button
-
+             <Button
 type="submit"
   sx={{
     px: "16px",
