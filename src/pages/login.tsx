@@ -12,7 +12,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { useRouter } from "next/router";
 const LoginComponent = () => {
-  const [email, setEmail] = useState("");
+  const [status, setStatus] = useState("");
   const [password, setPassword] = useState("");
 
   const [showPassword, setShowPassword] = React.useState(false);
@@ -26,14 +26,14 @@ const LoginComponent = () => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    if (email && password) {
+    if (status && password) {
     }
     const data = {
-      status: email,
+      status: status,
       password: password,
     };
     console.log(data);
-    const res = await fetch("http://localhost:4000/api/login", {
+    const res = await fetch("http://localhost:4000/api/loginAdmin", {
       body: JSON.stringify(data),
       method: "POST",
       mode: "cors",
@@ -70,9 +70,9 @@ const LoginComponent = () => {
                 <Stack gap={0.5}>
                   <Typography>Админ нэр </Typography>
                   <TextField
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => setStatus(e.target.value)}
                     required
-                    type="email"
+                    type="status"
                     id="outlined-basic"
                     placeholder="Админ нэрээ оруулна уу"
                     variant="outlined"
