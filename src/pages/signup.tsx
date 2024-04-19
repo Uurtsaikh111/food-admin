@@ -26,7 +26,7 @@ const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => 
         status:status  
   }
        
-       const res = await fetch("http://localhost:4000/api/register", {
+       const res = await fetch("https://food-be-three.vercel.app/api/register", {
       body: JSON.stringify(data),
       method: "POST",
       headers: {

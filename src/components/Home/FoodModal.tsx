@@ -60,7 +60,7 @@ export const FoodModal = ({
         ingredients: ingredients,
       };
 
-      const res = await fetch("http://localhost:4000/api/food", {
+      const res = await fetch("https://food-be-three.vercel.app/api/food", {
         body: JSON.stringify(data),
         method: "POST",
         headers: {

@@ -27,7 +27,7 @@ export const MenuButtons=({data,setData,a}:{ data:dataType[] | null, setData:Rea
     const deleteData = {
       id: e.target.id.value,
     };
-    const res = await fetch("http://localhost:4000/api/category", {
+    const res = await fetch("https://food-be-three.vercel.app/api/category", {
       body: JSON.stringify(deleteData),
       method: "Delete",
       mode: "cors",

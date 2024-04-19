@@ -33,7 +33,7 @@ const LoginComponent = () => {
       password: password,
     };
     console.log(data);
-    const res = await fetch("http://localhost:4000/api/loginAdmin", {
+    const res = await fetch("https://food-be-three.vercel.app/api/loginAdmin", {
       body: JSON.stringify(data),
       method: "POST",
       mode: "cors",

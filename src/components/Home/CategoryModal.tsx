@@ -35,7 +35,7 @@ export const CategoryModal = ({
       name: name,
     };
 
-    const res = await fetch("http://localhost:4000/api/category", {
+    const res = await fetch("https://food-be-three.vercel.app/api/category", {
       body: JSON.stringify(data),
       method: "POST",
       headers: {

@@ -24,7 +24,7 @@ export const CardButtons=({data}:{ data:foodType | null
     const deleteData = {
       id: e.target.id.value,
     };
-    const res = await fetch("http://localhost:4000/api/food", {
+    const res = await fetch("https://food-be-three.vercel.app/api/food", {
       body: JSON.stringify(deleteData),
       method: "Delete",
       mode: "cors",
@@ -45,11 +45,10 @@ export const CardButtons=({data}:{ data:foodType | null
       id: e.target.id.value,
       updateName: e.target.updateName.value,
       updatePrice: e.target.updatePrice.value,
-      updateImage: e.target.updateImage.value,
       updateDiscount: e.target.updateDiscount.value,
-      updateIngredients: e.target.updateIngredients.value,
+     
     };
-    const res = await fetch("http://localhost:4000/api/food", {
+    const res = await fetch("https://food-be-three.vercel.app/api/food", {
       body: JSON.stringify(updateData),
       method: "Put",
       mode: "cors",
@@ -104,25 +103,14 @@ export const CardButtons=({data}:{ data:foodType | null
                   variant="outlined"
                   sx={{ backgroundColor: "#ECEDF0"}}
                 />
-                <TextField
-                  
-                  name='updateImage'
-                  placeholder="Image"
-                  variant="outlined"
-                  sx={{ backgroundColor: "#ECEDF0"}}
-                />
+              
                 <TextField
                   name='updateDiscount'
                   placeholder="Discount"
                   variant="outlined"
                   sx={{ backgroundColor: "#ECEDF0"}}
                 />
-                <TextField
-                  name='updateIngredients'
-                  placeholder="Ingredients"
-                  variant="outlined"
-                  sx={{ backgroundColor: "#ECEDF0"}}
-                />
+               
                 <Button
                   name="id"
                  value={data?._id}
