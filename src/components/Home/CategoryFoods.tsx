@@ -98,10 +98,9 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
       </Box>
       <Stack>
         <Stack
-          direction={"row"}
-          justifyContent={"space-between"}
-          marginBottom={"86px"}
-          flexWrap={"wrap"}
+         direction={"row"}
+         gap={2}
+         flexWrap={"wrap"}
         >
           {filterFoods?.map((cardData, id) => (
             <Card key={id} data={cardData} />

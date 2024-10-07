@@ -9,21 +9,22 @@ Typography,
 import { CardButtons } from "./CardButtons";
 import { foodType } from "./types/foodtype";
 
+
   
   export const Card = ({ data }: { data: foodType}) => {
  return (
-      <Stack>
-        <Stack >
-        
+      <Stack >
+        <Stack  height={226} width={198}>
+    
           <Stack
           position={"relative"}
-          
-          ><CardMedia
+          >
+            <CardMedia
+            height={150}
             component={"img"}
             src={data.image}
-            width={282}
-            height={186}
-            alt=""
+            sx={{borderRadius:"6px"}}
+            
           />
            <Stack position={"absolute"} ><CardButtons data={data}/></Stack>
           </Stack>
@@ -38,9 +39,6 @@ import { foodType } from "./types/foodtype";
               </Typography>
             </Stack>
           </Stack>
-        </Stack>
-        <Stack>
-            
         </Stack>
       </Stack>
     );
