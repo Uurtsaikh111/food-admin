@@ -11,10 +11,12 @@ export default function Home() {
     const token = localStorage.getItem("userToken");
     if (!token) {
       router.push("/login");
+      
     }
   }, [router]);
+
   return (
-   
+
        <Stack bgcolor={"#F7F7F8"}>
         <Container maxWidth={"lg"}>
            <Stack direction={"row"} gap={4}>

@@ -142,7 +142,9 @@ type="submit"
     backgroundColor: "#18BA51",
     color: "white",
     fontSize: "16px",
-    border: "1px solid #18BA51",
+    border: "1px solid #18BA51",'&:hover': {
+                    backgroundColor: "#16A243", 
+                  },
   }}
 >
 Бүртгүүлэх

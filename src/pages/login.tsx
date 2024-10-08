@@ -51,6 +51,8 @@ const LoginComponent = () => {
       alert("something wrong");
     }
   };
+
+
   return (
     <Stack>
       <React.Fragment>
@@ -113,6 +115,7 @@ const LoginComponent = () => {
             <Stack gap={4}>
               <Button
                 type="submit"
+              
                 sx={{
                   px: "16px",
                   py: "8px",
@@ -120,7 +123,9 @@ const LoginComponent = () => {
                   backgroundColor: "#18BA51",
                   color: "white",
                   fontSize: "16px",
-                  border: "1px solid #18BA51",
+                  border: "1px solid #18BA51",'&:hover': {
+                    backgroundColor: "#16A243", 
+                  },
                 }}
               >
                 Нэвтрэх

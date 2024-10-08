@@ -89,7 +89,9 @@ export const CategoryFoods = ({ menu }: { menu: string }) => {
         <Stack>
           <Button
             onClick={handleOpen}
-            sx={{ color: "white", backgroundColor: "#18BA51" }}
+            sx={{ color: "white", backgroundColor: "#18BA51", '&:hover': {
+                    backgroundColor: "#16A243", 
+                  },}}
           >
             Add new food
           </Button>

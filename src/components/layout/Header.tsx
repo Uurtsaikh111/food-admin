@@ -5,9 +5,10 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import InputBase from "@mui/material/InputBase";
 import SearchIcon from "@mui/icons-material/Search";
-import { Container, Stack } from "@mui/material";
+import {Container, Stack } from "@mui/material";
 import { Basket, Logo, Profile } from "../Images";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
   borderRadius: theme.shape.borderRadius,
@@ -48,7 +49,22 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 const Header = () => {
+  const [token, setToken] = React.useState<string | null>(null);
+  const router = useRouter();
 
+  React.useEffect(() => {
+    const storedToken = localStorage.getItem("userToken");
+    setToken(storedToken);
+
+    if (!storedToken) {
+      router.push("/login");
+    }
+  }, [router]);
+  const handleLogout = () => {
+    localStorage.removeItem("userToken"); 
+    setToken(null); 
+    router.push("/login"); 
+  };
   return (
     <Container >
       <Stack
@@ -130,13 +146,19 @@ const Header = () => {
                 <Box>
                   <Profile />
                 </Box>
-                <Link
+
+                {token == null ? (<Link
                   href={"login"}
-                  style={{ textDecoration: "none" }}
-                  
+                  style={{ textDecoration: "none" }}  
                 >
-                  <Typography color={"#000000"}>Нэвтрэх</Typography>
-                </Link>
+                 <Typography color={"#000000"}>Нэвтрэх</Typography>
+                </Link>) : (   <button onClick={handleLogout}
+                style={{ padding: '4px 12px', backgroundColor: '#3f51b5', color: 'white', border: 'none', borderRadius: '4px', cursor: 'pointer' }}
+                >
+              Гарах
+            </button>)} 
+
+
               </Box>
             </Box>
           </Box>
